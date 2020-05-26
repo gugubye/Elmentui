@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+      @import url("//unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css");
+    .el-header, .el-footer {
+      background-color: #B3C0D1;
+      color: #333;
+      text-align: center;
+      line-height: 60px;
+    }
+    .el-header{
+        font-size: large;
+        font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    </el-dialog>
+        <el-container>
+            <el-header>注册</el-header>
+            <el-aside width="400px" >   用户名</el-aside>
+            <el-main>
+                <el-input v-model="input" placeholder="请输入用户名"></el-input>
+                    <script>
+                    export default {
+                    data() {
+                    return {
+                    input: ''
+                    }
+                }
+            }           
+                    </script>
+            </el-main>
+            <el-aside width="400px" >邮箱</el-aside>
+            <el-main>
+                <el-input v-model="input" placeholder="请输入邮箱"></el-input>
+                    <script>
+                    export default {
+                    data() {
+                    return {
+                    input: ''
+                    }
+                }
+            }           
+                    </script>
+            </el-main>
+            <el-aside width="400px"> 性别</el-aside>
+            <el-main>
+                <template>
+                    <el-radio v-model="radio" label="1">男</el-radio>
+                    <el-radio v-model="radio" label="2">女</el-radio>
+                  </template>
+                  
+                  <script>
+                   var main= {
+                      data () {
+                        return {
+                          radio: '1'
+                        };
+                      }
+                    }
+                    var Ctor = Vue.extend(Main)
+                    new Ctor().$mount('#app')
+                  </script>
+            </el-main>
+            <el-aside width="400px">所在城市</el-aside>
+            <el-main>
+                <template>
+                    <el-select v-model="value" placeholder="请选择">
+                      <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </template>
+                  
+                  <script>
+                    export default {
+                      data() {
+                        return {
+                          options: [{
+                            value: '选项1',
+                            label: '上海'
+                          }, {
+                            value: '选项2',
+                            label: '杭州'
+                          }, {
+                            value: '选项3',
+                            label: '北京'
+                          }, {
+                            value: '选项4',
+                            label: '深圳'
+                          }, {
+                            value: '选项5',
+                            label: '南京'
+                          }],
+                          value: ''
+                        }
+                      }
+                    }
+                  </script>
+            </el-main>
+            <el-main>
+                <template>
+                    <div class="block">
+                      <span class="demonstration">生日</span>
+                      <el-date-picker
+                        v-model="value2"
+                        align="right"
+                        type="date"
+                        placeholder="选择日期"
+                        :picker-options="pickerOptions">
+                      </el-date-picker>
+                    </div>
+                  </template>
+                  
+                  <script>
+                    export default {
+                      data() {
+                        return {
+                          pickerOptions: {
+                            disabledDate(time) {
+                              return time.getTime() > Date.now();
+                            },
+                            shortcuts: [{
+                              text: '今天',
+                              onClick(picker) {
+                                picker.$emit('pick', new Date());
+                              }
+                            }, {
+                              text: '昨天',
+                              onClick(picker) {
+                                const date = new Date();
+                                date.setTime(date.getTime() - 3600 * 1000 * 24);
+                                picker.$emit('pick', date);
+                              }
+                            }, {
+                              text: '一周前',
+                              onClick(picker) {
+                                const date = new Date();
+                                date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                                picker.$emit('pick', date);
+                              }
+                            }]
+                          },
+                          value1: '',
+                          value2: '',
+                        };
+                      }
+                    };
+                  </script>
+            </el-main>
+            <el-aside width="400px" > 爱好</el-aside>
+            <template>
+                <!-- `checked` 为 true 或 false -->
+                  <el-checkbox label="足球"></el-checkbox>
+                  <el-checkbox label="网球"></el-checkbox>
+                  <el-checkbox label="乒乓球"></el-checkbox>
+                  <el-checkbox label="羽毛球"></el-checkbox>
+              </template>
+              <script>
+                export default {
+                  data() {
+                    return {
+                      checked: true
+                    };
+                  }
+                };
+              </script>
+          </el-container>
+          <div align="center">
+            <el-button @click="visible = true">注册</el-button>
+            <el-dialog :visible.sync="visible" title="注册成功">
+            </div>
+    <el-dialog :visible.sync="visible" title="注册成功">
+      </div>
+  </div>
+</body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { visible: false }
+      }
+    })
+  </script>
+</html>
